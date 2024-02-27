@@ -1,0 +1,302 @@
+<!doctype html>
+
+<html lang="en">
+
+	<head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Harvard Citation Generator</title>
+        <link href=https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+        <style>
+ 			#resultsection {
+                display: none; /* Initially hide the result section */
+                }
+            .additional-author {
+				display: none;
+                }
+            .child {
+                display: inline-block;
+				}
+        </style>
+
+ 	</head>
+
+    <body>
+
+	<!-- Navigation Bar -->
+
+ 	<nav class="navbar  navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Harvard Reference Generator</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            	<span class="navbar-toggler-icon"></span>
+            </button>
+
+			<div class="collapse navbar-collapse" id="navbarNavDropdown">
+				<ul class="navbar-nav">
+					<li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Home</a></li>
+					<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Petroc links</a>
+						<ul class="dropdown-menu">
+							<li><a class="dropdown-item" href=https://sites.google.com/petroc.ac.uk/student-digital-hub/home>Student Digital Hub</a></li>
+							<li><a class="dropdown-item" href=https://sites.google.com/petroc.ac.uk/libraryplus/home>Library+</a></li>
+							<li><a class="dropdown-item" href=https://sites.google.com/petroc.ac.uk/ltlshelibraryplus/home>HE Library+</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+        </div>
+	</nav>
+
+
+<div class="container">
+	<div class="row">
+ 		<div class="col-md-6">
+ 			<main>
+ 				<form id="harvardForm">
+
+                    <div class="mb-3 mt-3">
+						<label class="form-label">Author's Surname:</label>
+                            <input class="form-control" type="text" id="authorSurname1" placeholder="Last Name" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Author's Initial:</label>
+							<input class="form-control" type="text" id="authorInitial1" placeholder="First Initial" required>
+					</div>
+
+                    <div class="mb-3 additional-author">
+						<label>Author's Surname:</label>
+                            <input class="form-control" type="text" id="authorSurname2" placeholder="Last Name" required>
+                    </div>
+
+                    <div class="mb-3 additional-author">
+                        <label>Author's Initial:</label>
+                            <input class="form-control" type="text" id="authorInitial2" placeholder="First Initial" required>
+                    </div>
+                          
+					<!-- Add more additional author fields as needed -->
+
+                    <div class="mb-3" id="editorSection">
+                        <input type="checkbox" id="isEditor">
+                            <label id="editorLabel" for="isEditor">If the authors above should be classed as editors, check this box</label>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Year of Publication:</label>
+                            <input class="form-control" type="text" id="year" placeholder="Year" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Title:</label>
+                            <input class="form-control" type="text" id="title" placeholder="Title" required>
+                    </div>
+
+ 
+
+                    <div class="mb-3">
+                        <label>Subtitle:</label>
+                            <input class="form-control" type="text" id="subtitle" placeholder="Subtitle">
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Edition:</label>
+                            <input class="form-control" type="text" id="edition" placeholder="Edition">
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Place of Publication:</label>
+                            <input class="form-control" type="text" id="place" placeholder="Place of Publication">
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Publisher:</label>
+                            <input class="form-control" type="text" id="publisher" placeholder="Publisher">
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Quoted Page Number(s):</label>
+                            <input class="form-control" type="text" id="pageNumbers" placeholder="Page Numbers">
+                    </div>
+
+                    <button class="btn btn-warning" id="addAuthorButton" type="button" onclick="addAuthorField()">Add Author</button>
+                    <button class="btn btn-success" id="generateButton" type="button" onclick="generateReference()">Generate Harvard Referencing</button>
+
+            	</form>
+
+            </main>
+
+ <script>
+
+    let additionalAuthorsVisible = false;
+    function addAuthorField() {
+        const additionalAuthorFields = document.querySelectorAll('.additional-author');
+        additionalAuthorsVisible = !additionalAuthorsVisible;
+        additionalAuthorFields.forEach(field => {
+            field.style.display = additionalAuthorsVisible ? 'block' : 'none';});
+        }
+
+// authors
+
+    function generateReference() {
+		
+        const authors = [];
+        for (let i = 1; i <= 2; i++) {
+            const surname = document.getElementById(`authorSurname${i}`).value;
+            const initial = document.getElementById(`authorInitial${i}`).value;
+            if (surname && initial) {
+                authors.push(`${surname}, ${initial}.`);
+                } else if (surname && !initial) {
+                authors.push(`${surname},`);
+                } 
+            }
+
+ // justsurnames
+
+		const justsurnames = [];
+			for (let i = 1; i <= 2; i++) {
+				const surname = document.getElementById(`authorSurname${i}`).value;
+					if (surname) {
+						justsurnames.push(`${surname},`);
+						}
+				}
+
+// justsurnamesNoComma
+
+		const justsurnamesNoComma = [];
+			for (let i = 1; i <= 2; i++) {
+				const surname = document.getElementById(`authorSurname${i}`).value;
+				if (surname) {
+					justsurnamesNoComma.push(`${surname}`);
+					}
+				}
+
+// isEditor
+
+		const isEditor = document.getElementById('isEditor').checked;
+		const year = document.getElementById('year').value;
+		let title = document.getElementById('title').value;
+		const subtitle = document.getElementById('subtitle').value;
+		const edition = document.getElementById('edition').value;
+		const place = document.getElementById('place').value;
+		const publisher = document.getElementById('publisher').value;
+		const pageNumbers = document.getElementById('pageNumbers').value;
+		const leftparent = "(";
+		const rightparent = ")";
+
+// result1 -> notmentioned
+
+		let referencingArray1 = [
+			justsurnamesNoComma.length > 0 ? leftparent + (justsurnamesNoComma.join(' and ')) + ',': null,
+			year ? `${year},` : null,
+			pageNumbers ? `p. ${pageNumbers}`+ rightparent : null,
+				];
+
+// mentioned1
+
+		const referencingArray2 = [
+			justsurnamesNoComma.length > 0 ? (justsurnamesNoComma.join(' and ')) + ',': null,
+				];
+
+// mentioned2
+
+		const referencingArray3 = [
+			year ? `(${year}),` : null,
+			pageNumbers ? `p. ${pageNumbers}` : null
+				];
+
+// fullref1
+
+		const referencingArray4 = [
+			authors.length > 0 ? authors.join(' and ') : null,
+			isEditor ? ' (Ed.)' : null,
+			year ? `(${year})` : null,
+			title ? `<i>${title}</i>` : null,
+				];
+
+// fullref2
+
+		const referencingArray5 = [
+			subtitle ? `<i>: ${subtitle}</i>.` : '.',
+			edition ? ` ${edition} edn.` : null,
+				];
+
+// fullref3
+
+		const referencingArray8 = [
+			place ? ` ${place}` : null,
+				];
+
+// fullref4
+
+		const referencingArray9 = [
+			publisher ? `: ${publisher}` : null,
+				];
+
+// joining
+
+		const notmentioned = referencingArray1.filter(item => item !== null).join(' ');
+		const mentioned1 = referencingArray2.filter(item => item !== null).join(' ');
+		const mentioned2 = referencingArray3.filter(item => item !== null).join(' ');
+		const fullref1 = referencingArray4.filter(item => item !== null).join(' ');
+		const fullref2 = referencingArray5.filter(item => item !== null).join(' ');
+		const fullref3 = referencingArray8.filter(item => item !== null).join(' ');
+		const fullref4 = referencingArray9.filter(item => item !== null).join(' ');
+
+// fullref
+
+		const referencingArray6 = [
+			fullref1 ? `${fullref1}` : null,
+			fullref2 ? `${fullref2}` : null,
+			fullref3 ? `${fullref3}` : null,
+			fullref4 ? `${fullref4}` : null,
+				];                            
+
+		const fullref = referencingArray6.filter(item => item !== null).join('');
+
+// mentioned
+
+		const referencingArray7 = [
+			mentioned1 ? `${mentioned1}` : null,
+			mentioned2 ? `${mentioned2}` : null,
+				];
+
+		const mentioned = referencingArray7.filter(item => item !== null).join(' ');
+
+// Display the result section
+
+		document.getElementById('resultsection').style.display = 'block';
+
+		document.getElementById('result1').innerText = notmentioned;
+		document.getElementById('result2').innerText = mentioned;
+//	document.getElementById('result3').innerText = mentioned2;
+		document.getElementById('result4').innerHTML = fullref;
+		document.getElementById('resultnot').innerText = notmentioned;
+	}
+
+</script>
+
+</div>
+
+<div class="col-md-6">
+    <div id="resultsection">
+        <h2>Here is your reference information:</h2>
+            <h4>In-text Citation:</h4>
+                <p>If you have not mentioned the author(s) surname in your text use:
+                    <div class="alert alert-info">
+                        <div id="result1"></div>
+                	</div>
+                <p>For example, ... this is "not comparable" <span id="resultnot"></span></p>
+                <p>If you have mentioned the author(s) surname in your text use:</p>
+                <div class="alert alert-info"> <div  id="result2"></div>
+                </div>
+            <h4>Reference List:</h4>
+ 			<div class="alert alert-info" id="result4"></div>
+            <div class="alert alert-success">Your reference has been created. You can copy and paste the text above into your assignment.</div>
+    </div>
+</div>
+</div>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>
