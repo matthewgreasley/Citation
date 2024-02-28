@@ -24,55 +24,60 @@
 
     <body>
 
-	<!-- Navigation Bar -->
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container-fluid">
+			  <a class="navbar-brand" href="#">Harvard Reference Generator</a>
+			  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			  </button>
+			  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+				  <li class="nav-item">
+					<a class="nav-link" href="#">Book</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" href="#">Film</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" href="#">Website</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" href="#">YouTube</a>
 
- 	<nav class="navbar navbar-dark bg-primary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Harvard Reference Generator</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            	<span class="navbar-toggler-icon"></span>
-            </button>
-
-			<div class="collapse navbar-collapse" id="navbarNavDropdown">
-				<ul class="navbar-nav">
-					<li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Home</a></li>
-					<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Petroc links</a>
-						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href=https://sites.google.com/petroc.ac.uk/student-digital-hub/home>Student Digital Hub</a></li>
-							<li><a class="dropdown-item" href=https://sites.google.com/petroc.ac.uk/libraryplus/home>Library+</a></li>
-							<li><a class="dropdown-item" href=https://sites.google.com/petroc.ac.uk/ltlshelibraryplus/home>HE Library+</a></li>
-						</ul>
-					</li>
 				</ul>
+
+			  </div>
 			</div>
-        </div>
-	</nav>
+		  </nav>
 
 
 <div class="container">
 	<div class="row">
- 		<div class="col-md-6">
+ 		<div class="mt-3 col-md-6">
  			<main>
  				<form id="harvardForm">
+					<h2>Reference a book:</h2>
 
-                    <div class="mb-3 mt-3">
-						<label class="form-label">Author's Surname:</label>
-                            <input class="form-control" type="text" id="authorSurname1" placeholder="Last Name" required>
+
+                    <div class="mb-3 mt-3 form-group row">
+						<label class="col-sm-4 col-form-label">Author's Surname:</label>
+						<input class="col-sm-8" type="text" id="authorSurname1" placeholder="e.g. Jones" required>
                     </div>
 
-                    <div class="mb-3">
-                        <label>Author's Initial:</label>
-							<input class="form-control" type="text" id="authorInitial1" placeholder="First Initial" required>
+
+                    <div class="mb-3 form-group row">
+                        <label class="col-sm-4 col-form-label">Author's Initial:</label>
+						<input class="col-sm-8" type="text" id="authorInitial1" placeholder="e.g. M" required>
 					</div>
 
-                    <div class="mb-3 additional-author">
-						<label>Author's Surname:</label>
-                            <input class="form-control" type="text" id="authorSurname2" placeholder="Last Name" required>
+                    <div class="mb-3 form-group row additional-author">
+						<label class="col-sm-4 col-form-label">Author's Surname:</label>
+                        <input class="col-sm-7" type="text" id="authorSurname2" placeholder="Heller" required>
                     </div>
 
-                    <div class="mb-3 additional-author">
-                        <label>Author's Initial:</label>
-                            <input class="form-control" type="text" id="authorInitial2" placeholder="First Initial" required>
+                    <div class="mb-3 form-group row additional-author">
+                        <label class="col-sm-4 col-form-label">Author's Initial:</label>
+                        <input class="col-sm-7" type="text" id="authorInitial2" placeholder="J" required>
                     </div>
                           
 					<!-- Add more additional author fields as needed -->
@@ -82,45 +87,45 @@
                             <label id="editorLabel" for="isEditor">If the authors above should be classed as editors, check this box</label>
                     </div>
 
-                    <div class="mb-3">
-                        <label>Year of Publication:</label>
-                            <input class="form-control" type="text" id="year" placeholder="Year" required>
+                    <div class="mb-3 form-group row">
+                        <label class="col-sm-4 col-form-label">Year of Publication:</label>
+                            <input class="col-sm-8" type="text" id="year" placeholder="e.g. 2010" required>
                     </div>
 
-                    <div class="mb-3">
-                        <label>Title:</label>
-                            <input class="form-control" type="text" id="title" placeholder="Title" required>
+                    <div class="mb-3 form-group row">
+                        <label class="col-sm-4 col-form-label">Title:</label>
+                            <input class="col-sm-8" type="text" id="title" placeholder="e.g. Cite them Right" required>
                     </div>
 
  
 
-                    <div class="mb-3">
-                        <label>Subtitle:</label>
-                            <input class="form-control" type="text" id="subtitle" placeholder="Subtitle">
+                    <div class="mb-3 form-group row">
+                        <label class="col-sm-4 col-form-label">Subtitle:</label>
+                            <input class="col-sm-8" type="text" id="subtitle" placeholder="e.g. the essential referencing guide">
                     </div>
 
-                    <div class="mb-3">
-                        <label>Edition:</label>
-                            <input class="form-control" type="text" id="edition" placeholder="Edition">
+                    <div class="mb-3 form-group row">
+                        <label class="col-sm-4 col-form-label">Edition:</label>
+                            <input class="col-sm-8" type="text" id="edition" placeholder="e.g. 2nd">
                     </div>
 
-                    <div class="mb-3">
-                        <label>Place of Publication:</label>
-                            <input class="form-control" type="text" id="place" placeholder="Place of Publication">
+                    <div class="mb-3 form-group row">
+                        <label class="col-sm-4 col-form-label">Place of Publication:</label>
+                            <input class="col-sm-8" type="text" id="place" placeholder="e.g. Cambridge">
                     </div>
 
-                    <div class="mb-3">
-                        <label>Publisher:</label>
-                            <input class="form-control" type="text" id="publisher" placeholder="Publisher">
+                    <div class="mb-3 form-group row">
+                        <label class="col-sm-4 col-form-label">Publisher:</label>
+                            <input class="col-sm-8" type="text" id="publisher" placeholder="Pearson">
                     </div>
 
-                    <div class="mb-3">
-                        <label>Quoted Page Number(s):</label>
-                            <input class="form-control" type="text" id="pageNumbers" placeholder="Page Numbers">
+                    <div class="mb-3 form-group row">
+                        <label class="col-sm-4 col-form-label">Quoted Page Number(s):</label>
+                            <input class="col-sm-8" type="text" id="pageNumbers" placeholder="e.g. 23-24">
                     </div>
 
-                    <button class="btn btn-warning" id="addAuthorButton" type="button" onclick="addAuthorField()">Add Author</button>
-                    <button class="btn btn-success" id="generateButton" type="button" onclick="generateReference()">Generate Harvard Referencing</button>
+                    <button class="mt-4 btn btn-warning" id="addAuthorButton" type="button" onclick="addAuthorField()">Add Author</button>
+                    <button class="mt-4 btn btn-success" id="generateButton" type="button" onclick="generateReference()">Generate Harvard Referencing</button>
 
             	</form>
 
@@ -278,7 +283,7 @@
 
 </div>
 
-<div class="col-md-6">
+<div class="mt-3 col-md-6">
     <div id="resultsection">
         <h2>Here is your reference information:</h2>
             <h4>In-text Citation:</h4>
@@ -286,7 +291,7 @@
                     <div class="alert alert-info">
                         <div id="result1"></div>
                 	</div>
-                <p>For example, ... this is "not comparable" <span id="resultnot"></span></p>
+                <p>For example, ... as discussed in previous studies <span id="resultnot"></span></p>
                 <p>If you have mentioned the author(s) surname in your text use:</p>
                 <div class="alert alert-info"> <div  id="result2"></div>
                 </div>
